@@ -13,7 +13,14 @@ fizzbuzz(16);
 */
 
 const fizzbuzz = num => {  
-  
+    let results = [];
+    for (let i = 1; i <= num; i++) {
+        if (i % 15 === 0) results.push ("fizzbuzz");
+        else if (i % 5 === 0) results.push ("buzz");
+        else if (i % 3 === 0) results.push ("fizz");
+        else results.push(i); 
+    }
+    return results;
 };
 
 /*
@@ -36,7 +43,18 @@ fizzbuzzbazz(22);
 */
 
 const fizzbuzzbazz = num => {
-  
+    let results = [];
+    for (let i = 1; i <= num; i++) {
+        if (i % 105 === 0) results.push ("fizzbuzzbazz")
+        else if (i % 35 === 0) results.push ("buzzbazz")
+        else if (i % 21 === 0) results.push ("fizzbazz");
+        else if (i % 15 === 0) results.push ("fizzbuzz");
+        else if (i % 7 === 0) results.push ("bazz");
+        else if (i % 5 === 0) results.push ("buzz");
+        else if (i % 3 === 0) results.push ("fizz");
+        else results.push(i); 
+    }
+    return results;
 };
 
 module.exports = {fizzbuzz, fizzbuzzbazz};
