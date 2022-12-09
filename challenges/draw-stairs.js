@@ -53,6 +53,7 @@ drawStar(5) ->
 */
 
 const drawStar = n => {
+if (n%2 === 0) return;
 let str = "";
 for (let i = 1; i <= n; i++) {
 
