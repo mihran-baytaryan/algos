@@ -45,22 +45,22 @@ const drawStairs = n => {
  \|/ 
  --+--
  /|\ 
-/ | \
-
-*/
-
-const drawStar = n => {
-if (n%2 === 0) return;
-let str = "";
-for (let i = 1; i <= n; i++) {
-
-     if (i < n/2 || i > (n/2)+1) {
-          for (let j = 1; j <= n; j++) {
-               if (j === i) str += "\\";
-               else if (j === n-(i-1)) str+="/";
-               else if (j < Math.round(n/2)|| j > Math.round(n/2)) str+= " ";
-               if (j === Math.round(n/2)) str+= "|";
-               if (j === n) str+= "\n";
+ / | \
+ 
+ */
+ 
+ const drawStar = n => {
+     if (n%2 === 0) return;
+     
+     for (let i = 1; i <= n; i++) {
+          let str = "";
+          if (i < n/2 || i > (n/2)+1) {
+               for (let j = 1; j <= n; j++) {
+                    if (j === i) str += "\\";
+                    else if (j === n-(i-1)) str+="/";
+                    else if (j < Math.round(n/2)|| j > Math.round(n/2)) str+= " ";
+                    if (j === Math.round(n/2)) str+= "|";
+               }
           }
      
      
@@ -72,11 +72,8 @@ for (let i = 1; i <= n; i++) {
           }
           console.log(str); 
      }
-}
-return str;  
-}
-
-
-module.exports = { drawStairs, drawStar };
-
-
+ 
+ }
+ 
+ module.exports = { drawStairs, drawStar };
+ 
