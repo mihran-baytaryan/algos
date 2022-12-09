@@ -18,8 +18,14 @@ drawStairs(6) ->
 */
 
 const drawStairs = n => {
-
+     if (n <= 0) return;
+     str = "";
+     for (let i = 1; i <= n; i++) {
+          str += " ".repeat(n-i) + "*".repeat(i) + "\n";
+     }
+     return str;
 };
+
 
 /* 
 
@@ -47,7 +53,42 @@ drawStar(5) ->
 */
 
 const drawStar = n => {
+let str = "";
+for (let i = 1; i <= n; i++) {
 
-};
+     if (i < n/2 || i > (n/2)+1) {
+          for (let j = 1; j <= n; j++) {
+               if (j === i) str += "\\";
+               else if (j < n/2 || j > n/2) str+= " ";
+               if (j === Math.round(n/2)) str+= "|";
+               if (j === n-(i-1)) str+="/";
+               if (j === n) str+= "\n";
+          }
+     }
+
+
+     if (i === Math.round(n/2)) {
+          for (let j = 1; j <= n; j++) {
+               if (j < n/2 || j > Math.round(n/2)) str += "-";
+               if (j === Math.round(n/2)) str += "+";
+               if (j === n) str+= "\n";
+          }
+     }
+
+     // if (i > n/2) {
+     //      for (let j = 1; j <= n; j++) {
+               
+     //           if (j === Math.round(n/2)) str += "|";
+     //           if (j === n) str+= "\\";
+     //           if (j === n) str+= "\n";
+     //      }
+     // }
+        
+}
+return str;  
+}
+
 
 module.exports = { drawStairs, drawStar };
+
+console.log(drawStar(5))
