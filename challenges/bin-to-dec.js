@@ -16,7 +16,11 @@ https://m.wikihow.com/Read-Binary
 */
 
 function binToDec(binString){
-
+    let binDec = 0;
+    for (let i = 0; i < binString.length; i++) {
+        binDec += binString[binString.length - (i + 1)] * (2 ** i)
+    }
+    return binDec;
 }
 
 
