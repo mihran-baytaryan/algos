@@ -19,10 +19,13 @@ drawStairs(6) ->
 
 const drawStairs = n => {
      if (n <= 0) return;
+     str = "";
      for (let i = 1; i <= n; i++) {
-          console.log(" ".repeat(n-i) + "*".repeat(i));
+          str += " ".repeat(n-i) + "*".repeat(i) + "\n";
      }
- };
+     return str;
+};
+
 
  /* 
  
@@ -88,7 +91,6 @@ for (let i = 1; i <= n; i++) {
                     if (j === Math.round(n/2)) str += "+";
                }
           }
-          console.log(str); 
      }
 <<<<<<< HEAD
  
