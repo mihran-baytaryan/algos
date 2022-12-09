@@ -64,6 +64,7 @@ const drawStairs = n => {
  --+--
  --+--
  /|\ 
+<<<<<<< HEAD
  / | \
  
  */
@@ -80,6 +81,23 @@ const drawStairs = n => {
                     else if (j < Math.round(n/2)|| j > Math.round(n/2)) str+= " ";
                     if (j === Math.round(n/2)) str+= "|";
                }
+=======
+/ | \
+
+*/
+
+const drawStar = n => {
+let str = "";
+for (let i = 1; i <= n; i++) {
+
+     if (i < n/2 || i > (n/2)+1) {
+          for (let j = 1; j <= n; j++) {
+               if (j === i) str += "\\";
+               else if (j === n-(i-1)) str+="/";
+               else if (j < Math.round(n/2)|| j > Math.round(n/2)) str+= " ";
+               if (j === Math.round(n/2)) str+= "|";
+               if (j === n) str+= "\n";
+>>>>>>> 1818335 (completed hack hour 2 untested)
           }
      
      
@@ -98,8 +116,19 @@ const drawStairs = n => {
           }
           console.log(str); 
      }
+<<<<<<< HEAD
  
  }
  
  module.exports = { drawStairs, drawStar };
  
+=======
+}
+return str;  
+}
+
+
+module.exports = { drawStairs, drawStar };
+
+
+>>>>>>> 1818335 (completed hack hour 2 untested)
