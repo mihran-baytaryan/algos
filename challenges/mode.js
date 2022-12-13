@@ -12,7 +12,17 @@ mode([7, 5, 8, 8, 2, 5]) -> 8
 */
 
 const mode = array => {
-  
+  const cache = array.reduce((pre, cur) => {
+    if (pre[cur]) pre[cur] += 1;
+    else pre[cur] = 1;
+    return pre;
+  },{});
+  let mode = +Object.keys(cache)[0];
+  for (const key in cache) {
+    if (cache[key] > cache[mode]) mode = +key;
+    if (cache[key] === cache[mode] && +key > mode) mode = +key;
+  }
+  return mode;
 };
 
 /*
@@ -34,7 +44,32 @@ mode([4, []]) -> 4
 */
 
 const modeNested = array => {
+
+  function flatten(array, flatArray = []) {
+    for (let i = 0; i < array.length; i++) {
+        if (!array[i].length && typeof array[i] === 'number') flatArray.push(array[i]);
+        else if (array[i].length)  flatten(array[i], flatArray); 
+    }
+    return flatArray;
+  }
+  const flattenedArray = flatten(array);
   
+  const cache = flattenedArray.reduce((pre, cur) => {
+    if (pre[cur]) pre[cur] += 1;
+    else pre[cur] = 1;
+    return pre;
+  },{})
+
+  let mode = +Object.keys(cache)[0];
+
+  for (const key in cache) {
+    if (cache[key] > cache[mode]) mode = +key;
+    if (cache[key] === cache[mode] && +key > mode) mode = +key;
+  }
+
+  return mode;
 };
 
 module.exports = {mode, modeNested};
+
+
