@@ -10,6 +10,13 @@
 function pow(base, power) {
   // for a recursive approach remember to write your base case
   // write your recursive logic here
+  if (power === 0) return 1;
+  let result = base;
+  for (let i = power; i > 1; i--) {
+    result *= base;
+  }
+  return result;
+  // return base ** pow   //2 ez
 }
 
 /**
@@ -19,6 +26,8 @@ function pow(base, power) {
 function powRecurse(base, power) {
   // for a recursive approach remember to write your base case
   // write your recursive logic here
+  if (power === 0) return 1;
+  return base * powRecurse(base, power - 1);
 }
 
 module.exports = { pow, powRecurse };
