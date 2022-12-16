@@ -5,6 +5,14 @@
 */
 
 const fastCache = func => {
+
+    cache = {};
+
+    return function (input) {
+        if (cache[input] !== undefined) return cache[input];
+        cache[input] = func(input);
+        return cache[input];
+    }
   
 };
 
@@ -13,8 +21,30 @@ const fastCache = func => {
  HINT: you might need to use the spread operator...
 */
 
-const fastCacheAdvanced = func => {
+const fastCacheAdvanced = func => {           //getting right answer but calling less times than expected for last example of last test?
+
+    cache = new Map;
+
+    return function (...args) {
+        if (cache[args] !== undefined) return cache[args];
+        cache[args] = func(...args);
+        return cache[args];
+    }
   
 };
+
+const pluralizedKeys = (...objs) => {
+    return objs.reduce((pluralizedKeys, obj) => {
+      return pluralizedKeys.concat(Object.keys(obj).map(key => `${key}s`));
+    }, [])
+  };
+
+console.log(pluralizedKeys({'cat': true}, {'dog': true, 'frog': true}))
+
+const cachedPlural = fastCacheAdvanced(pluralizedKeys);
+
+const result = cachedPlural({'cat': true}, {'dog': true, 'frog': true});
+
+console.log(result);
 
 module.exports = {fastCache, fastCacheAdvanced};
