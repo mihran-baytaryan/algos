@@ -6,6 +6,11 @@ ex: [1,5,4,3,6,2,4,7] should return 4
 
 const duplicateNumber = array => {
 
+    return array.reduce((pre, cur)=>{
+        if (pre[cur]) return cur;
+        else pre[cur] = 1;
+        return pre;
+    },{})
 };
 
 
@@ -17,6 +22,7 @@ ex: [3, 4, 7, 6, 8, 5, 6] should return 6
 
 const duplicateNumberAdvanced = array => {
 
+    
 };
 
 module.exports = { duplicateNumber, duplicateNumberAdvanced };
