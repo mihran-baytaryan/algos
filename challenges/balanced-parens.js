@@ -25,7 +25,9 @@
  */
 
 const balancedParens = input => {
+    
+}
 
-};
+console.log(balancedParens(' const coolFunc = () => { anotherCoolFunc(); }'))
 
 module.exports = { balancedParens} ;
