@@ -22,27 +22,26 @@ is within "depth 3". No number is deeper.
 
 */
 
-const retrieveDepth = (arr, depth) => { //edge case or not part of problem?
+const retrieveDepth = (arr, depth) => {
+  let result = [];
+  let temp = [...arr];
+  let counter = depth;
 
-  const result = [];
+  function inner(arr, counter) {
+    if (counter === 0) return result;
+    
+    counter--;
 
-  function inner(arr) {
-    if (depth < 1) return;
     for (let i = 0; i < arr.length; i++) {
-      if (typeof arr[i] === 'number') result.push(arr[i]);
-      else if (Array.isArray(arr[i])) {
-        depth --;
-        inner(arr[i]);
-      }
+      if (!Array.isArray(arr[i])) result.push(arr[i]);
+      else (temp.push(...arr[i]));
     }
+    
   }
-
-  inner(arr);
-  return result;
 
 }
 
-console.log(retrieveDepth([2, [4, [7], 1], [3, [6]], 5], 2))
+console.log(retrieveDepth([2, [4, [7], 1], 5], 2))
 
 /*
 
@@ -75,6 +74,9 @@ const flattenDepth = (arr, depth) => {
   let result = [...arr];
   let temp = [...arr];
   let counter = depth;
+  let result = [...arr];
+  let temp = [...arr];
+  let counter = depth;
   
   function inner(arr, counter){
     if (counter === 0) return result;
@@ -89,7 +91,21 @@ const flattenDepth = (arr, depth) => {
   }
 
   return inner(temp, counter);
+  function inner(arr, counter){
+    if (counter === 0) return result;
+    result = [];
+    counter--;
+    for (let i = 0; i < temp.length; i++) {
+      if (Array.isArray(arr[i])) result.push(...arr[i]);
+      else result.push(arr[i]);
+    }
+    temp = [...result];
+    return inner(temp, counter);
+  }
+
+  return inner(temp, counter);
 };
+
 
 
 module.exports = {retrieveDepth, flattenDepth};
