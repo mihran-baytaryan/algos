@@ -10,8 +10,21 @@ keywordCount(['blah', 'key', ['inside', ['really inside']]], 'lol') -> 0
 */
 
 const keywordCount = (array, keyword) => {
-  
+    let count = array.length ? 0 : undefined;
+
+    function inner(array, keyword, count) {
+        array.forEach(el =>{
+            if (Array.isArray(el)) count = inner(el, keyword, count);
+            if (el === keyword) count++;
+        })
+        return count;
+    }
+
+    count += inner(array,keyword,count);    
+    
+    return count;
 };
+
 
 /*
 
@@ -27,7 +40,33 @@ keywordMode([['ace', 'cool'], ['hi'], 'cool']) -> ['cool']
 */
 
 const keywordMode = array => {
-  
+    const cache = {};
+
+    function inner(array, cache) {
+        array.forEach(el => {
+            if (Array.isArray(el)) {
+                inner(el, cache);
+            } else {
+                if (!cache[el]) cache[el] = 1;
+                else cache[el]++;
+            }
+        })
+    }
+
+    inner(array, cache);
+    let max = 0;
+    const results = [];
+
+    for (const key in cache) {
+        if (cache[key] > max) max = cache[key];
+    }
+
+    for (const key in cache) {
+        if (cache[key] === max) results.push(key);
+    }
+
+    return results.sort();
 };
+
 
 module.exports = {keywordCount, keywordMode};
