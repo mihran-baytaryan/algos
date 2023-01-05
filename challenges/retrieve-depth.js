@@ -22,26 +22,27 @@ is within "depth 3". No number is deeper.
 
 */
 
-const retrieveDepth = (arr, depth) => {
-  let result = [];
-  let temp = [...arr];
-  let counter = depth;
+const retrieveDepth = (arr, depth) => { //edge case or not part of problem?
 
-  function inner(arr, counter) {
-    if (counter === 0) return result;
-    
-    counter--;
+  const result = [];
 
+  function inner(arr) {
+    if (depth < 1) return;
     for (let i = 0; i < arr.length; i++) {
-      if (!Array.isArray(arr[i])) result.push(arr[i]);
-      else (temp.push(...arr[i]));
+      if (typeof arr[i] === 'number') result.push(arr[i]);
+      else if (Array.isArray(arr[i])) {
+        depth --;
+        inner(arr[i]);
+      }
     }
-    
   }
+
+  inner(arr);
+  return result;
 
 }
 
-console.log(retrieveDepth([2, [4, [7], 1], 5], 2))
+console.log(retrieveDepth([2, [4, [7], 1], [3, [6]], 5], 2))
 
 /*
 
