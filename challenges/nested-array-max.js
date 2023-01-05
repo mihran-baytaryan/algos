@@ -20,18 +20,14 @@ nestedArrMax(arrNested);
 
 const nestedArrMax = arr => {
 
-    if (!arr.length) return;
-    let max = {number: -Infinity}
+    let max = arr.length ? -Infinity : undefined;
 
-    function inner(arr, max) {
-        for (let i = 0; i < arr.length; i++) {
-            if (!Array.isArray(arr[i]) && arr[i] > max.number) max.number = arr[i];
-            if (Array.isArray(arr[i])) inner(arr[i], max);   
-        }
-        return max.number;
-    }
+    arr.forEach(el => {
+        if (Array.isArray(el)) max = Math.max(nestedArrMax(el), max);
+        if (!max || el > max) max = el;
+    })
 
-    return inner(arr, max);
+    return max;
 };
 
 console.log(nestedArrMax([1, [11, 5], 10]));
