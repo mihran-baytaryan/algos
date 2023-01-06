@@ -10,18 +10,14 @@ keywordCount(['blah', 'key', ['inside', ['really inside']]], 'lol') -> 0
 */
 
 const keywordCount = (array, keyword) => {
-    let count = array.length ? 0 : undefined;
+    let count = 0;
 
-    function inner(array, keyword, count) {
         array.forEach(el =>{
-            if (Array.isArray(el)) count = inner(el, keyword, count);
-            if (el === keyword) count++;
+            if (Array.isArray(el)) count += keywordCount(el, keyword);
+            else if (el === keyword) count++;
         })
-        return count;
-    }
 
-    count += inner(array,keyword,count);    
-    
+
     return count;
 };
 
