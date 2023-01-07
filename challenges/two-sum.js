@@ -18,8 +18,15 @@
 
 
 const twoSum = (arr, target) => { 
-
+  const cache = new Map();
+  for (let i = 0; i < arr.length; i++) {
+    if (cache.has(arr[i])) return true;
+    cache.set(target-arr[i], arr[i]);
+  }
+  return false;
 }
+
+console.log(twoSum([2, 5, 11, 15], 7));
 
 /*
 Extension:
@@ -32,11 +39,15 @@ The straightforward way to solve this problem would take O(n³) time. Is it poss
 */
 
 const threeSum = (arr, target) => { 
+  const cache = new Map ();
+  for (let i = 0; i < arr.length; i++) {
+    cache.set(target - arr[i], arr[i]);
+  }
 
 }
 
 
 
-
+console.log(threeSum([2, 5, 11, 15], 18));
 
 module.exports = { twoSum, threeSum };
