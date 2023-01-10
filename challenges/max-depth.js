@@ -20,7 +20,15 @@ maxDepth([4, [0, [[3], 2]], 2, 7, 8, [1]]) -> 4 (maximum depth is 4 levels)
 */
 
 const maxDepth = arr => {
-  
+    let deepest = 0;
+
+
+    arr.forEach(el => {
+        if (Array.isArray(el)) deepest = Math.max(maxDepth(el), deepest);
+    })
+
+    return deepest + 1;
+
 };
 
 module.exports = {maxDepth};
