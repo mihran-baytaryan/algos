@@ -20,8 +20,25 @@ calculate profit along the array.
 
 */
 
-const highestProfit = apple_stock => {
+const highestProfit = stock => {
+
+    if (!Array.isArray(stock)) return 0;
+    const min = {val: stock[0], index: 0};
+    let profit = 0;
+
+    for (let i = 0; i < stock.length; i++) {
+        if (stock[i] < min.val) {
+            min.val = stock[i];
+            min.index = i;
+        }
+        if (stock[i] > min.val && i > min.index && stock[i]- min.val > profit) {
+            profit = stock[i] - min.val;
+        }
+    }
+
+    return profit;
 
 }
+
 
 module.exports = {highestProfit}

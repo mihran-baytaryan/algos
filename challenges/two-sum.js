@@ -40,14 +40,14 @@ The straightforward way to solve this problem would take O(n³) time. Is it poss
 
 const threeSum = (arr, target) => { 
   const cache = new Map ();
-  for (let i = 0; i < arr.length; i++) {
-    cache.set(target - arr[i], arr[i]);
+  for (let i = 0; i < arr. length; i ++) {
+    cache.set (arr[i], target - arr[i])
+    for (let j = i+1; j < arr.length; j++) {
+      if (arr.slice(j+1).includes(cache.get(arr[i]) - arr[j])) return true;
+    }
   }
-
+  return false;
 }
 
-
-
-console.log(threeSum([2, 5, 11, 15], 18));
 
 module.exports = { twoSum, threeSum };
