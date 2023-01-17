@@ -14,8 +14,21 @@ console.table(matrixTranspose(twoDimArray)); // -> [['fred', 30, true],
 */
 
 const matrixTranspose = matrix => {
+  if (!matrix.length) return matrix;
+  let result = [];
+  
+  for (let i = 0; i < matrix[0].length; i++) {
+    const row = [];
+    for (let j = 0; j < matrix.length; j++) {
+      row.push(matrix[j][i]);
+    }
+    result.push(row);
+  }
 
+  return result;
 };
+
+console.log(matrixTranspose([['fred', 'barney'], [30, 40], [true, false]]));
 
 /*
 
