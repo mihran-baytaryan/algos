@@ -80,20 +80,9 @@ Given a linked list:
 
 const linkedListRemoveMultiple = (ll, val) => {
 
-  let node = ll.head;
+  // let node = ll.head;
 
-  while (node) {
-    if (ll.head.val === val) {
-      ll.head = node.next;
-    } 
-    if (node.next.val === val) {
-      let result = node.next;
-      node.next = node.next.next
-    }
-  }
-
-  if (node.val === val) return node;
-  else return undefined;
+  
 
 
 }
