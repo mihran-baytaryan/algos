@@ -30,7 +30,36 @@ function Node(val) {
 
 const linkedListRemove = (ll, val) => {
 
+  let node = ll.head;
+
+  while (node) {                       
+    if (ll.head.val === val) {
+      ll.head = node.next;
+      return node;
+    }     
+    else if (node.next.val === val) {
+      let result = node.next;
+      node.next = node.next.next;
+      return result;
+    }         
+    node = node.next;  
+  }       
+  return undefinded;                                  
+
 };
+
+const ll = new LinkedList();
+const nodeList = new Node('a');
+nodeList.next = new Node('d');
+nodeList.next.next = new Node('b');
+nodeList.next.next.next = new Node('c');
+nodeList.next.next.next.next = new Node('b');
+ll.head = nodeList;
+
+
+// console.log(linkedListRemove(ll, 'a'));
+// console.log(ll.head.val)
+// console.log(ll.head.next.val)
 
 
 /*
@@ -50,6 +79,22 @@ Given a linked list:
 */
 
 const linkedListRemoveMultiple = (ll, val) => {
+
+  let node = ll.head;
+
+  while (node) {
+    if (ll.head.val === val) {
+      ll.head = node.next;
+    } 
+    if (node.next.val === val) {
+      let result = node.next;
+      node.next = node.next.next
+    }
+  }
+
+  if (node.val === val) return node;
+  else return undefined;
+
 
 }
 
