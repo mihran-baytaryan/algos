@@ -41,7 +41,25 @@ function BinaryTree(value) {
 }
 
 const validBST = tree => {
+  const cache = [];
 
+  function treeToArray(tree) {
+    if (!tree) return;
+
+    treeToArray(tree.left)
+    cache.push(tree.value)
+    treeToArray(tree.right)
+  }
+  
+  treeToArray(tree)
+
+  for (let i = 0; i < cache.length; i++) {
+    if (cache[i] >= cache[i+1]) return false
+  }
+
+  return true;
 }
 
+
 module.exports = { BinaryTree, validBST };
+
