@@ -36,8 +36,24 @@ Utilizing recursion is not necessary, nor recommended.
 */
 
 const bfs = (root, callback) => {
+  let current = root;
+  let queue = [current];
+
+
+  while (current) {
+    if (current.left) {
+      queue.push(current.left);
+    }
+    if (current.right) {
+      queue.push(current.right) 
+    }
+    current = queue[queue.indexOf(current) + 1];
+  }
+
+  queue.forEach(el => callback(el.value));
   
 };
+
 
 /*
 
@@ -88,7 +104,76 @@ neighbors are traversable and haven't already been visited.
 */
 
 const minimumDistance = grid => {
+  let cur = {
+    val: 0,
+    x: 0,
+    y: 0,
+    steps: 0,
+  }
+  let queue = [cur];
+  let traversed = [];
+
+  while (queue.length) {
+
+    if (cur.val === 2 ) return cur.steps;
+    traversed.push(`${cur.x}${cur.y}`);
+    
+    if (cur.x - 1 > 0 && grid[cur.x - 1][cur.y] !== 1 && !traversed.includes(`${cur.x - 1}${cur.y}`)) {
+      queue.unshift({
+        ...cur,
+        val: grid[cur.x-1][cur.y],
+        x: cur.x - 1,
+        steps: cur.steps + 1
+      })
+    }
+
+    if (cur.x + 1 < grid.length && grid[cur.x + 1][cur.y] !== 1 && !traversed.includes(`${cur.x + 1}${cur.y}`)) {
+      queue.unshift({
+        ...cur,
+        val: grid[cur.x + 1][cur.y],
+        x: cur.x + 1,
+        steps: cur.steps + 1
+      })
+    }
+
+    if (cur.y - 1 > 0 && grid[cur.x][cur.y-1] !== 1 && !traversed.includes(`${cur.x}${cur.y - 1}`)) {
+      queue.unshift({
+        ...cur,
+        val: grid[cur.x][cur.y-1],
+        y: cur.y - 1,
+        steps: cur.steps + 1
+      })
+    }
+
+    if (cur.y + 1 < grid[cur.x].length && grid[cur.x][cur.y+1] !== 1 && !traversed.includes(`${cur.x}${cur.y + 1}`)) {
+      queue.unshift({
+        ...cur,
+        val: grid[cur.x][cur.y+1],
+        y: cur.y + 1,
+        steps: cur.steps + 1
+      })
+    }
+
+
+    
+    queue.pop();
+    cur = queue[queue.length - 1];
+  }
+
+  return -1;
   
 };
 
+
+
 module.exports = {BinarySearchTree, bfs, minimumDistance};
+
+const input = 
+[
+  [0, 0, 1, 1],
+  [0, 0, 1, 2],
+  [1, 0, 0, 1]
+]
+
+
+
