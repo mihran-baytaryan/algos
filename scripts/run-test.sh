@@ -14,6 +14,17 @@ elif [ ! -f "./__tests__/$1" ] && [ ! -f "./__tests__/$1.js" ]; then
   echo -e "\033[0;31mPlease check your spelling.\033[0m"
   echo -e "\033[0;31mIf you think you've gotten this message in error, please speak to a fellow.\033[0m"
   echo -en '\n'
+# if typescript argument is present, run test file with it
+elif [ $2 ]; then
+  echo Running tests for $1 $2
+  echo -en '\n'
+  # if they passed the hh to test in as <hh>.js, then don't add .js to filename
+  if [[ $1 == *".js"* ]]; then
+    ./node_modules/.bin/jest __tests__/$1 $2
+  # if they followed instructions and passed in just the name of the HH:
+  else
+    ./node_modules/.bin/jest __tests__/$1.js $2
+  fi
 # run the test file
 else 
   echo Running tests for $1

@@ -3,6 +3,8 @@ Hack hours are a series of algorithm problems to refine your problem solving ski
 
 Make sure you read through and understand the challenge, then work through your approach.  Often, the first attempt will be a brute force solution.  Examine that solution to see if there's some time or space complexity that could be saved using a different approach.  Other times, you may not get to the solution at all.  It is still valuable time spent making the effort.  Even if you don't solve the problem, you will benefit from the exercise.  Just keep building that muscle so it's there when you need it!
 
+During the **senior portion** of the immersive, you will have added the option to complete hack hours in TypeScript. Please refer to the `TypeScript.md` file in this repo for further instructions. 
+
 ![Approach to Problem Solving](https://i.imgur.com/IyE4PRX.png)
 
 ## What do I need to do to get initial setup done for Hack Hours?
