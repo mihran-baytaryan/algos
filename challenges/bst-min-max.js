@@ -30,21 +30,17 @@ returns 8, becuase 9 - 1 = 8
 
 const bstMinMax = root => {
   let current = root;
-  let min = root.value;
-  let max = root.value;
-
+  let min;
+  let max;
   while(current !== null) {
     min = current.value;
     current = current.left;
   }
-
   current = root;
-
   while (current !== null) {
     max = current.value;
     current = current.right;
   }
-  
   return max - min;
 };
 
@@ -85,7 +81,6 @@ const lowestCommonAncestor = (root, p, q) => {
   }
   let ancestorsP = reverseBinarySearch(root, p);
   let ancestorsQ = reverseBinarySearch(root, q);
-
   let lowestCommonAncestor;
   ancestorsP.forEach(el => {
     if (ancestorsQ.has(el)) lowestCommonAncestor = el;
@@ -95,13 +90,3 @@ const lowestCommonAncestor = (root, p, q) => {
 
 module.exports = {BinarySearchTree, bstMinMax, lowestCommonAncestor};
 
-// const bst = new BinarySearchTree(10);
-// bst.left = new BinarySearchTree(3);
-// bst.left.left = new BinarySearchTree(1);
-// bst.left.right = new BinarySearchTree(4);
-// bst.left.right.right = new BinarySearchTree(5);
-// bst.right = new BinarySearchTree(12);
-
-// const result = lowestCommonAncestor(bst, bst.left.right, bst.left.right.right);
-
-// console.log(result.value)
