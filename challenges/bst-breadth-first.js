@@ -38,20 +38,12 @@ Utilizing recursion is not necessary, nor recommended.
 const bfs = (root, callback) => {
   let current = root;
   let queue = [current];
-
-
   while (current) {
-    if (current.left) {
-      queue.push(current.left);
-    }
-    if (current.right) {
-      queue.push(current.right) 
-    }
+    if (current.left) queue.push(current.left);
+    if (current.right) queue.push(current.right) 
     current = queue[queue.indexOf(current) + 1];
   }
-
   queue.forEach(el => callback(el.value));
-  
 };
 
 
@@ -168,12 +160,6 @@ const minimumDistance = grid => {
 
 module.exports = {BinarySearchTree, bfs, minimumDistance};
 
-const input = 
-[
-  [0, 0, 1, 1],
-  [0, 0, 1, 2],
-  [1, 0, 0, 1]
-]
 
 
 
