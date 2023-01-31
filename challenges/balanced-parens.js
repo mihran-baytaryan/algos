@@ -25,9 +25,25 @@
  */
 
 const balancedParens = input => {
+  const bracks = {
+    ')' : '(',
+    ']' : '[',
+    '}' : '{' 
+  }
+  let stack = [];
+  for (let i = 0; i < input.length; i++) {
+    if (Object.hasOwn(bracks, input[i]) || Object.values(bracks).includes(input[i])) {
+      if (Object.values(bracks).includes(input[i])) stack.push(input[i]);
+      else if (Object.hasOwn(bracks, input[i])  && stack[stack.length-1] === bracks[input[i]]) {
+        stack.pop();
+      }else{  
+        return false;
+      }
+    }
+  }
+  if (!stack.length) return true;
+  else return false;
     
 }
-
-console.log(balancedParens(' const coolFunc = () => { anotherCoolFunc(); }'))
 
 module.exports = { balancedParens} ;
