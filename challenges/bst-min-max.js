@@ -29,7 +29,23 @@ returns 8, becuase 9 - 1 = 8
 */
 
 const bstMinMax = root => {
+  let current = root;
+  let min = root.value;
+  let max = root.value;
+
+  while(current !== null) {
+    min = current.value;
+    current = current.left;
+  }
+
+  current = root;
+
+  while (current !== null) {
+    max = current.value;
+    current = current.right;
+  }
   
+  return max - min;
 };
 
 /*
@@ -57,7 +73,35 @@ The LCA of node 2 and node 8 is node 4.
 */
 
 const lowestCommonAncestor = (root, p, q) => {
-  
+  const reverseBinarySearch = (root, x) => {
+    let result = new Set();
+    let current = root;
+    while (current !== null) {
+      result.add(current);
+      if (x.value === current.value) return result;
+      else if (x.value < current.value) current = current.left;
+      else current = current.right;
+    }
+  }
+  let ancestorsP = reverseBinarySearch(root, p);
+  let ancestorsQ = reverseBinarySearch(root, q);
+
+  let lowestCommonAncestor;
+  ancestorsP.forEach(el => {
+    if (ancestorsQ.has(el)) lowestCommonAncestor = el;
+  });
+  return lowestCommonAncestor;
 };
 
 module.exports = {BinarySearchTree, bstMinMax, lowestCommonAncestor};
+
+// const bst = new BinarySearchTree(10);
+// bst.left = new BinarySearchTree(3);
+// bst.left.left = new BinarySearchTree(1);
+// bst.left.right = new BinarySearchTree(4);
+// bst.left.right.right = new BinarySearchTree(5);
+// bst.right = new BinarySearchTree(12);
+
+// const result = lowestCommonAncestor(bst, bst.left.right, bst.left.right.right);
+
+// console.log(result.value)
