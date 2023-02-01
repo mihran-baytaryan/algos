@@ -29,7 +29,7 @@ describe('bstSum test', () => {
   });
 });
 
-xdescribe('bstReverse test', () => {
+describe('bstReverse test', () => {
   let bst;
   it('reverses single-depth binary search trees', () => {
     bst = new BinarySearchTree(6);
