@@ -14,7 +14,18 @@ function.
 */
 
 const bstSum = root => {
-  
+  let current = root;
+  let sum = 0;
+  let queue = [];
+
+  while (current) {
+    sum += current.value;
+    if (current.left) queue.unshift(current.left);
+    if (current.right) queue.unshift(current.right);
+    current = queue.pop();
+  }
+
+  return sum;
 };
 
 /*
@@ -54,7 +65,19 @@ function.
 */
 
 const bstReverse = root => {
-  
+  let queue = [];
+  let current = root;
+  let temp;
+
+  while (current) {
+    temp = current.left;
+    current.left = current.right;
+    current.right = temp;
+    if (current.left) queue.unshift(current.left);
+    if (current.right) queue.unshift(current.right);
+    current = queue.pop();
+  }
+
 };
 
 module.exports = {BinarySearchTree, bstSum, bstReverse};
