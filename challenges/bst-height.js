@@ -24,7 +24,19 @@ and has 3 links.
 */
 
 const bstHeight = tree => {
-  
+  let height = 0;
+  const queue = [];
+  let current = {
+    node: tree,
+    height: 0
+  }
+  while (current?.node) {
+    if (current.height >= height) height = current.height;
+    if (current.node.left !== null) queue.unshift({node: current.node.left, height: current.height + 1});
+    if (current.node.right !== null) queue.unshift({node: current.node.right, height: current.height + 1});
+    current = queue.pop();
+  }
+  return height;
 };
 
 /*
@@ -55,7 +67,18 @@ const bstHeight = tree => {
  */
 
 const superbalanced = tree => {
-  
+  let current = tree;
+  let queue = [];
+
+  while (current) {
+    
+    if (current.left !== null) queue.unshift(current.left);
+    if (current.right !== null) queue.unshift(current.right);
+    if (Math.abs(bstHeight(queue[0]) - bstHeight(queue[1])) > 1) return false;
+    current = queue.pop();
+  }
+
+  return true;
 };
 
 module.exports = {BinarySearchTree, bstHeight, superbalanced};
