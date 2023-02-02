@@ -13,20 +13,27 @@ function.
 
 */
 
+// const bstSum = root => {                         //Iterative solution//
+//   let current = root;                            //Unshift has (O)n time, would be more performant to use a linked list//
+//   let sum = 0;
+//   let queue = [];
+
+//   while (current) {
+//     sum += current.value;
+//     if (current.left) queue.unshift(current.left);
+//     if (current.right) queue.unshift(current.right);
+//     current = queue.pop();
+//   }
+
+//   return sum;
+// };
+
 const bstSum = root => {
-  let current = root;
-  let sum = 0;
-  let queue = [];
-
-  while (current) {
-    sum += current.value;
-    if (current.left) queue.unshift(current.left);
-    if (current.right) queue.unshift(current.right);
-    current = queue.pop();
-  }
-
-  return sum;
-};
+  if (!root) return 0;
+  const leftVal = root.left ? bstSum(root.left) : 0;
+  const rightVal = root.right ? bstSum(root.right) : 0;
+  return root.value + leftVal + rightVal;
+}
 
 /*
 
