@@ -40,7 +40,11 @@ function.
 */
 
 const bstReverse = root => {
-  
+  if (root.left === null && root.right === null) return root;
+  [root.left, root.right] = [root.right, root.left];
+  if (root.left) bstReverse (root.left);
+  if (root.right) bstReverse (root.right);
+  return root;
 };
 
 /*
@@ -79,8 +83,21 @@ Math.ceil function)
 
 */
 
-const sortedArrayToBST = arr => {
+const sortedArrayToBST = arr => {                               //implementing binary search approach, but have to go through entire array anyways. Could there 
+  if (arr.length === 1) return new BinarySearchTree(arr[0]);   //still be an issue with using .slice which is O(n)?
+  if (!arr.length) return null;
+  let index;
+  if (arr.length % 2 === 0) index = arr.length / 2;
+  else index = Math.floor(arr.length / 2);
+
+  let root = new BinarySearchTree(arr[index]);
+  root.left = sortedArrayToBST(arr.slice(0, index));
+  root.right = sortedArrayToBST(arr.slice(index+1, arr.length));
   
+  return root;
 };
 
 module.exports = {BinarySearchTree, bstReverse, sortedArrayToBST};
+
+// const result = sortedArrayToBST([1, 4, 7, 8]);
+// console.log(result);
