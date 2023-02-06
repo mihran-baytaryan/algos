@@ -69,6 +69,7 @@ DoublyLinkedList.prototype.remove = function (val) {
     node.next = null;
     node.prev = null;
   }
+  return;
 };
 
 module.exports = { DoublyLinkedList };
