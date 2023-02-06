@@ -14,7 +14,14 @@ whole array, the array will end up being sorted.
 */
 
 const selectionSort = array => {
-  
+  for (let i = 0; i < array.length - 1; i++) {
+    let index = i;
+    for (let j = i+1; j < array.length; j++) {
+      if (array[j] <= array[index]) index = j;
+    }
+    [array[i], array[index]] = [array[index], array[i]]
+  }
+  return array;
 };
 
 /*
@@ -41,7 +48,16 @@ etc.
 */
 
 const insertionSort = array => {
-  
+  for (let i = 1; i < array.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (array[j] > array[i]) {
+        [array[i], array[j]] = [array[j], array[i]]
+        i--;
+        break;
+      } 
+    }
+  }
+  return array;
 };
 
 module.exports = {selectionSort, insertionSort};
