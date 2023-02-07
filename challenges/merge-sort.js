@@ -13,7 +13,23 @@
 */
 
 const mergeSort = array => {
+  if (array.length < 2) return array;
+  const mid = Math.floor(array.length/2);
+  const left = mergeSort(array.slice(0, mid));
+  const right = mergeSort(array.slice(mid));
+  return merge(left, right);
 
+  function merge (left, right) {
+    const merged = [];
+    let indL = 0, indR = 0;
+    while (left[indL] !== undefined || right[indR] !== undefined) {
+      if (left[indL] <= right[indR]) merged.push(left[indL++]);
+      else if (left[indL] > right[indR]) merged.push(right[indR++]);
+      else if (right[indR] === undefined) merged.push(left[indL++]);
+      else if (left[indL] === undefined) merged.push(right[indR++]);
+    }
+    return merged;
+  }
 }
 
 module.exports = { mergeSort };
