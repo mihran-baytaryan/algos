@@ -25,15 +25,18 @@ Caveats:
 
 */
 
-
 class EventEmitter {
 
+  functions: Object
+
   constructor() {
-    
+    this.functions = {
+      String : Function 
+    }
   }
 
   on(funcName: string, func: (...args: any) => any) {
-
+    
   }
 
   trigger(funcName: string, ...args: any) {
