@@ -19,7 +19,18 @@ The strings must be returned in the order suggested above.
 */
 
 const rps = n => {
-  
+  const results = [];
+  const generate = str => {
+    if (str.length === n) {
+      results.push(str);
+      return;
+    }
+    generate(str + 'r');
+    generate(str + 'p');
+    generate(str + 's');
+  }
+  generate('');
+  return results;
 };
 
 /*
@@ -48,7 +59,22 @@ The strings must be returned in order reflecting the order of letters in 'chars'
 */
 
 const passwords = (chars, n) => {
+  const result = [];
+  const word = chars.split("")
   
+  const generate = str => {
+    if (str.length === n) {
+      result.push(str);
+      return
+    }
+
+    for (let i = 0; i < word.length; i++) {
+      generate(str + word[i])
+    }
+    
+  }
+  generate("");
+  return result;
 };
 
 module.exports = {rps, passwords};
