@@ -64,8 +64,22 @@ throttle and debounce) here: https://tomekdev.com/posts/throttle-vs-debounce-on-
 */
 
 const throttle = (f, t) => {
-  
+  let status = 'go';
+  return function inner () {
+    const timerReset = () => {
+      if (status === 'wait') f();
+      status = 'go';
+    };
+    if (status === 'go') {
+      f();
+      status = 'stop';
+      setTimeout(timerReset, t);
+    } else if (status === 'stop') {
+      status = 'wait';
+    } else if (status === 'wait') {
+      return;
+    }
+  }
 };
 
 module.exports = {throttle};
-
