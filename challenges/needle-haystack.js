@@ -16,7 +16,19 @@ Output: false
 */
 
 const needleInHaystack = (string, substring) => {
-
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === substring[0]) {
+      for (let j = 0; j < substring.length; j++) {
+        if (string[i] !== substring[j]) {
+          break;
+        }else{
+          i++;
+          if (j + 1 === substring.length) return true;
+        }
+      }
+    }
+  }
+  return false;
 };
 
 /*
@@ -31,7 +43,19 @@ Output: false
 */
 
 const needleInHaystackWithWildcards = (string, substring) => {
-
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === substring[0] || string[i] === '_' || substring[0] === '_') {
+      for (let j = 0; j < substring.length; j++) {
+        if (string[i] !== substring[j] && string[i] !== '_' && substring[i] !== '_') {
+          break;
+        }else{
+          i++;
+          if (j + 1 === substring.length) return true;
+        }
+      }
+    }
+  }
+  return false;
 };
 
 module.exports = { needleInHaystack, needleInHaystackWithWildcards };
