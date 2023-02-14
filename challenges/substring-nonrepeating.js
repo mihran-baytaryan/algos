@@ -31,7 +31,21 @@ characters. How do we keep track of this "window"?
 */
 
 const substringNonrepeating = str => {
-  
+  let sub = '';
+  let max = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    let chars = [...sub]
+    if (chars.includes(str[i])) {
+      sub = sub.slice(sub.indexOf(str[i]) + 1);
+    }
+    sub += str[i]
+    if (sub.length > max) max = sub.length;
+  }
+
+  return max;
 };
 
 module.exports = {substringNonrepeating};
+
+console.log(substringNonrepeating('a'));
