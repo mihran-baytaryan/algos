@@ -47,5 +47,3 @@ const substringNonrepeating = str => {
 };
 
 module.exports = {substringNonrepeating};
-
-console.log(substringNonrepeating('a'));
