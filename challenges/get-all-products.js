@@ -21,7 +21,28 @@ input array? How would you handle this?
 */
 
 const getAllProducts = array => {
-  
+  let zeroCount = 0, prod = 1, zeroIndex;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === 0) {
+      zeroCount++;
+      zeroIndex = i
+      if (zeroCount === 2) break;
+    } else {
+      prod *= array[i];
+    }
+  }
+
+  if (zeroCount === 0) {
+    return array.map(el => prod/el)
+  } else if (zeroCount === 1) {
+    const result = new Array(array.length).fill(0);
+    result[zeroIndex] = prod;
+    return result;
+  } else if (zeroCount === 2) {
+    return new Array(array.length).fill(0);
+  }
 };
 
 module.exports = { getAllProducts };
+
+console.log(getAllProducts([1, 7, 3, 4]))
