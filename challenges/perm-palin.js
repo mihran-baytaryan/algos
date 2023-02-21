@@ -15,7 +15,18 @@
  */
 
 const permPalin = str => {
+  if (typeof str !== 'string') return false;
 
+  const cache = [...str].reduce((pre, cur) => {
+    if (pre[cur]) delete pre[cur];
+    else pre[cur] = 1;
+    return pre;
+  }, {})
+
+  if (str.length % 2 !== 0 && Object.values(cache).length > 1) return false;
+  if (str.length % 2 === 0 && Object.values(cache).length) return false;
+  
+  return true;
 };
 
 /* 
