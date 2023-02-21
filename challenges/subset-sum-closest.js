@@ -26,8 +26,16 @@ of 6.
 */
 
 const subsetSumClosest = (nums, target) => {
-  
-};
+  let diff = Infinity;
+  const findSubs = (sum = 0, index = 0) => {
+    diff = Math.min(Math.abs(target - sum), diff)
+    if (index >= nums.length) return;
+    findSubs(sum, index + 1);
+    findSubs(sum + nums[index], index + 1);  
+  }
+  findSubs();
+  return diff;
+}
 
 /*
 
@@ -70,7 +78,23 @@ A solution set is:
 */
 
 const generateCombinations = (nums, target) => {
-  
+  const result = [];
+  const findSubs = (arr = [...nums], index = 0) => {
+    if (arr.length === 1) {
+      if (arr[0] === target) {
+        result.push([arr[0]])
+        return;
+      }
+    } else return;
+
+    if (arr.reduce((a,b) => a + b) === target) result.push(arr);
+    findSubs(arr.slice())
+
+  }
+  findSubs();
+  return result;
 };
 
 module.exports = {subsetSumClosest, generateCombinations};
+
+console.log(generateCombinations([2,3,6,7], 7))
