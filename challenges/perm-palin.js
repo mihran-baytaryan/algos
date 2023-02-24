@@ -49,4 +49,4 @@ const permPalinAdvanced = str => { //Advanced
   }
   return true;
 };
-module.exports = { permPalin };
+module.exports = { permPalin};
