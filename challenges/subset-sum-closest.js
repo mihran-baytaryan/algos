@@ -97,4 +97,4 @@ const generateCombinations = (nums, target) => {
 
 module.exports = {subsetSumClosest, generateCombinations};
 
-console.log(generateCombinations([2,3,6,7], 7))
+console.log(generateCombinations([2,3,5], 7))
