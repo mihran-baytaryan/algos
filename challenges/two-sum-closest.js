@@ -27,8 +27,29 @@ O(n) time.
 */
 
 const twoSumClosest = (nums, target) => {
-  
+  const mergeSort = (arr, l = 0, r = arr.length - 1) => {
+    if (l >= r) {
+      return;
+    }
+    const m = Math.ceil(arr.length/2)
+    
+  }
+  mergeSort(nums);
+  //sort array (using .sort but normally would use merge sort)
+  nums.sort((a,b) => a-b);
+  let left = 0;
+  let right = nums.length - 1;
+  let result = Infinity;
+  while (left<right) {
+    const curSum = nums[left] + nums[right];
+    if (curSum === target) return curSum;
+    if (Math.abs(target - result) > Math.abs(target-curSum)) result = curSum;
+    if(curSum < target) left++;
+    if(curSum > target) right--;
+  }
+  return result;
 };
 
 module.exports = {twoSumClosest};
 
+console.log(twoSumClosest([2, -2, 1], 4))
