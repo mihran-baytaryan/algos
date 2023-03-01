@@ -31,11 +31,18 @@ Hint: look up setInterval and clearInterval.
 class SecondClock {
   constructor(cb) {
     this.cb = cb;
+    this.intervalID;
+    this.second = 0;
   }
 
-  start() {}
+  start() {
+    this.intervalID = setInterval(() => this.cb( this.second++ % 60 + 1), 1000);
+  }
 
-  stop() {}
+  stop() {
+    this.second = 0;
+    clearInterval(this.intervalID);
+  }
 }
 
 module.exports = { SecondClock };
