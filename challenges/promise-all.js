@@ -20,7 +20,25 @@ for info on the Promise constructor.
 */
 
 const promiseAll = promises => {
-  
+  const n = promises.length;
+
+  return new Promise((resolve, reject) => {
+    let completed = 0;
+    const results = new Array(n).fill(null);
+
+    promises.forEach((promise, i) => {
+      promise
+        .then(result => {
+          completed++;
+          results[i] = result;
+
+          if (completed === n) resolve(results);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  });
 };
 
 
