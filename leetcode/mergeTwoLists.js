@@ -32,14 +32,11 @@ var mergeTwoLists = function(list1, list2) {
 //   while(list1 && list2) {
 //     if (list1.val < list2.val) {
 //       current.next = list1;
-//       console.log(current.next.val, list1.val)
 //       list1 = list1.next;
-//       console.log(current.next.val, list1.val)
 //     }else{
 //       current.next = list2;
 //       list2 = list2.next;
 //     }
-//     console.log(head.val, current.val)
 //     current = current.next;
 //   }
 //   if(list1){
