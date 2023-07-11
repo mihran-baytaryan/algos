@@ -8,44 +8,31 @@ class ListNode {
 function mergeKLists (lists) {
   let result = new ListNode(Infinity);
   let next = new ListNode(Infinity);
-  
-  while (lists.some(el => el?.val !== null)) {
+
+  while (lists.some(el => typeof(el?.val) === 'number')) {
     let min = new ListNode(Infinity);
 
-    for (let i = 0; i < lists.length; i++) {
-        if (lists[i].val === null) continue;
-        if (lists[i].val <= min.val) min = lists[i];
+    for (const i in lists) {
+      if (lists[i]?.val !== null && lists[i]?.val <= min.val) min = lists[i];
     }
 
     if (result.val === Infinity) {
-      result.val = min.val
+      result.val = min.val;
     } else if (next.val === Infinity) {
-      next.val = min.val
+      next.val = min.val;
       result.next = next;
     } else {
-      next.next = new ListNode(min.val)
-      next = next.next
+      next.next = new ListNode(min.val);
+      next = next.next;
     }
 
-    if (min.next !== null) {
-      min.val = min.next.val;
-      min.next = min.next.next;
-    } else {
-      min.val = null;
-    }
-
+    min.val = (min.next !== null ? min.next.val : null);
+    min.next = (min.next !== null ? min.next.next : null);
   }
 
   if (result.val === Infinity) {
     return result.next;
-  } else{
+  } else {
     return result;
   }
-
 }
-
-
-const lists = [new ListNode(0, new ListNode(2))];
-
-console.log(mergeKLists(lists))
-
