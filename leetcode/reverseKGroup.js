@@ -7,26 +7,20 @@ class ListNode {
 
 var reverseKGroup = function(head, k) {
 
-  let current = head;
-  let end = head;
-  let count = k - 1;
+  //bonus: solve in 0(1) extra memory space
+    //does creating a temp variable that is a shallow copy of list stay within 0(1) because it is a pointer and not a new object?
 
-  if (head?.val === null || head?.val === undefined || head?.next === null) {
-    const result = new ListNode();
-    return result.next;
-  } 
+  //base cases:
+    //length of head <= 1
+    //k <= heads or remainder of heads length
+    //RETURN head (modified in place or not)
 
-  while (head.next !== null) {
-    while (count) {
-      if (head.next === null) break;
-      end = head.next;
-      count--;
-    }
-  }
-  
-  
+  //reversing a singly linked list:
+    //
+
+
 };
 
 const list = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))))
 
-console.log(reverseKGroup())
+console.log(reverseKGroup(list, 2))
